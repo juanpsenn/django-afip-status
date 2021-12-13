@@ -26,16 +26,9 @@ class CheckStatusApi(views.APIView):
 
 
 class ListCheckStatusApi(views.APIView):
-    class OutputSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = models.Status
-            exclude = [
-                "id",
-            ]
-
     def get(self, request):
-        history = selectors.list_check_history()
+        history = selectors.show_statistics()
         return Response(
-            {"history": self.OutputSerializer(history, many=True).data},
+            {"history": list(history)},
             200,
         )
