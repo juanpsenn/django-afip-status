@@ -1,2 +1,1 @@
 web: gunicorn afip_status.wsgi
-release: python manage.py migrate --noinput
